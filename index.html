@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – Kiddoo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #faf7f4;
+      --white:   #ffffff;
+      --blush:   #f9e8e0;
+      --rose:    #e8927c;
+      --rose2:   #d4674f;
+      --sage:    #8aab95;
+      --sky:     #a8c5d8;
+      --text:    #1e1a18;
+      --muted:   #7a6e6a;
+      --border:  #ede6e1;
+      --green:   #3d7a5a;
+      --greenBg: #eaf3ee;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* subtle dot grid background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #e0d0c8 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: .45;
+      pointer-events: none;
+    }
+
+    /* decorative blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: .18;
+      pointer-events: none;
+    }
+    .blob-1 { width: 380px; height: 380px; background: var(--rose);  top: -120px; left: -100px; }
+    .blob-2 { width: 300px; height: 300px; background: var(--sky);   bottom: -80px; right: -60px; }
+    .blob-3 { width: 200px; height: 200px; background: var(--sage);  top: 40px; right: 15%; }
+
+    .hero-inner {
+      position: relative;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .app-icon {
+      width: 88px;
+      height: 88px;
+      background: linear-gradient(135deg, #f4c4b0 0%, #e8927c 100%);
+      border-radius: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 32px rgba(232,146,124,.3), 0 2px 8px rgba(0,0,0,.06);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-6px); }
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--rose2);
+    }
+
+    .hero .subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      letter-spacing: .02em;
+      margin-bottom: 1.75rem;
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      justify-content: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .4rem .9rem;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .01em;
+    }
+
+    .badge-green { background: var(--greenBg); color: var(--green); border: 1px solid #b6d9c5; }
+    .badge-rose  { background: var(--blush);   color: var(--rose2); border: 1px solid #f0c4b4; }
+    .badge-sky   { background: #e8f3f9;        color: #4a7e9b;      border: 1px solid #b8d6e8; }
+
+    /* ─── LAYOUT ─── */
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04), 0 4px 20px rgba(0,0,0,.04);
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .5s ease, transform .5s ease, box-shadow .2s ease;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 8px 32px rgba(0,0,0,.07);
+    }
+
+    /* accent bar per card */
+    .card { border-top: 3px solid transparent; }
+    .card:nth-child(1)  { border-top-color: var(--rose); }
+    .card:nth-child(2)  { border-top-color: var(--sage); }
+    .card:nth-child(3)  { border-top-color: var(--sky); }
+    .card:nth-child(4)  { border-top-color: #c9a0dc; }
+    .card:nth-child(5)  { border-top-color: #f4c542; }
+    .card:nth-child(6)  { border-top-color: #87ceeb; }
+    .card:nth-child(7)  { border-top-color: #78c1a3; }
+    .card:nth-child(8)  { border-top-color: var(--rose2); }
+    .card:nth-child(9)  { border-top-color: var(--sky); }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      background: var(--cream);
+    }
+
+    .card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.3;
+      padding-top: .15rem;
+    }
+
+    .card p {
+      font-size: .95rem;
+      color: #3d3530;
+      margin-bottom: .6rem;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: .6rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .card ul li {
+      font-size: .93rem;
+      color: #3d3530;
+      padding-left: 1.4rem;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+      font-weight: 600;
+    }
+
+    /* highlight box */
+    .callout {
+      background: var(--greenBg);
+      border: 1px solid #b6d9c5;
+      border-radius: 12px;
+      padding: .9rem 1.1rem;
+      margin-top: .75rem;
+      font-size: .9rem;
+      color: #2b5740;
+      display: flex;
+      gap: .6rem;
+      align-items: flex-start;
+    }
+
+    .callout .callout-icon { flex-shrink: 0; font-size: 1rem; margin-top: .05rem; }
+
+    /* contact grid */
+    .contact-table {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: .5rem 1.25rem;
+      margin-top: .75rem;
+    }
+
+    .contact-table .key {
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding-top: .1rem;
+    }
+
+    .contact-table .val {
+      font-size: .95rem;
+      color: var(--text);
+    }
+
+    a { color: var(--rose2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── DIVIDER ─── */
+    .section-label {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 1rem 0 .25rem .25rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 3rem;
+      font-size: .82rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    footer .footer-app {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--rose2);
+      margin-bottom: .3rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 520px) {
+      .hero { padding: 3.5rem 1.25rem 3rem; }
+      .card { padding: 1.5rem 1.25rem; }
+      .contact-table { grid-template-columns: 1fr; gap: .2rem; }
+      .contact-table .key { margin-top: .5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="hero-inner">
+    <div class="app-icon">🍼</div>
+    <h1>Privacy <em>Policy</em></h1>
+    <p class="subtitle">Kiddoo – Baby-Tracker &nbsp;·&nbsp; iOS</p>
+    <div class="badge-group">
+      <span class="badge badge-green">✓ Deine Daten gehören nur dir</span>
+      <span class="badge badge-rose">✓ Opt-in Partner-Sync via iCloud</span>
+      <span class="badge badge-sky">✓ DSGVO-konform</span>
+    </div>
+  </div>
+</header>
+
+<!-- ─── CONTENT ─── -->
+<main class="content">
+
+  <p class="section-label">Grundlegendes</p>
+
+  <!-- Card 1: Verantwortlicher -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">👤</div>
+      <h2>Verantwortlicher</h2>
+    </div>
+    <div class="contact-table">
+      <span class="key">Name</span>      <span class="val">Sören Jacobsen</span>
+      <span class="key">App</span>       <span class="val">Kiddoo – Baby-Tracker</span>
+      <span class="key">Plattform</span> <span class="val">iOS</span>
+      <span class="key">E-Mail</span>    <span class="val"><a href="mailto:privacy@kiddoo-app.de">privacy@kiddoo-app.de</a></span>
+    </div>
+  </div>
+
+  <!-- Card 2: Grundsatz -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔒</div>
+      <h2>Privacy by Design</h2>
+    </div>
+    <p>
+      Kiddoo wurde von Grund auf nach dem Prinzip der Datensparsamkeit entwickelt.
+      Wir betreiben <strong>keine eigenen Server</strong> und geben deine Daten
+      nicht an Dritte weiter.
+    </p>
+    <div class="callout">
+      <span class="callout-icon">✅</span>
+      <span>Alle eingegebenen Daten – Schlafzeiten, Mahlzeiten, Windelprotokolle – werden
+      <strong>standardmäßig ausschließlich lokal auf deinem Gerät</strong> gespeichert.
+      Wenn du die optionale Partner-Sync-Funktion aktivierst, werden deine Daten
+      über <strong>Apple iCloud</strong> synchronisiert – ausschließlich mit Personen,
+      die du selbst einlädst.</span>
+    </div>
+  </div>
+
+  <p class="section-label">Datenverarbeitung</p>
+
+  <!-- Card 3: Welche Daten -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📋</div>
+      <h2>Verarbeitete Daten</h2>
+    </div>
+    <p>Die App verarbeitet ausschließlich Inhalte, die du aktiv eingibst:</p>
+    <ul>
+      <li>Schlafzeiten, Mahlzeiten und Windelwechsel</li>
+      <li>Optionale Notizen und Zeitstempel</li>
+      <li>Individuelle Einstellungen und Konfiguration</li>
+    </ul>
+    <div class="callout">
+      <span class="callout-icon">🚫</span>
+      <span>Es findet <strong>kein Tracking, keine Analyse und keine Übermittlung</strong>
+      dieser Daten an Dritte statt.</span>
+    </div>
+  </div>
+
+  <!-- Card 4: Keine Weitergabe -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🚫</div>
+      <h2>Keine Werbung, kein Tracking</h2>
+    </div>
+    <p>Du wirst in Kiddoo nicht beobachtet oder verfolgt:</p>
+    <ul>
+      <li>Keine Analyse deines Nutzungsverhaltens (z. B. Google Analytics, Firebase, Mixpanel)</li>
+      <li>Keine Werbeanzeigen oder personalisiertes Targeting</li>
+      <li>Keine Weitergabe deiner Daten an Dritte</li>
+    </ul>
+  </div>
+
+  <!-- Card 4b: iCloud-Sync -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">☁️</div>
+      <h2>Optionaler Partner-Sync via iCloud</h2>
+    </div>
+    <p>
+      Kiddoo bietet eine optionale Funktion zur gemeinsamen Nutzung mit einem Partner oder
+      einer weiteren Betreuungsperson. Diese Funktion nutzt <strong>Apple iCloud (CloudKit)</strong>
+      zur Synchronisierung.
+    </p>
+    <ul>
+      <li>Die Sync-Funktion ist <strong>standardmäßig deaktiviert</strong> und muss aktiv eingeschaltet werden</li>
+      <li>Daten werden ausschließlich mit Personen synchronisiert, die du <strong>explizit eingeladen</strong> hast</li>
+      <li>Die Übertragung erfolgt <strong>verschlüsselt</strong> über Apple iCloud</li>
+      <li>Kiddoo hat zu keinem Zeitpunkt Zugriff auf deine iCloud-Daten</li>
+      <li>Es gelten zusätzlich die <a href="https://www.apple.com/legal/privacy/de-ww/" target="_blank" rel="noopener">Datenschutzbestimmungen von Apple</a></li>
+    </ul>
+    <div class="callout">
+      <span class="callout-icon">ℹ️</span>
+      <span>Wenn du die Sync-Funktion nicht nutzt, verlassen deine Daten dein Gerät zu keinem Zeitpunkt.</span>
+    </div>
+  </div>
+
+  <!-- Card 5: Berechtigungen -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📱</div>
+      <h2>App-Berechtigungen</h2>
+    </div>
+    <p>
+      Kiddoo fordert nur die Berechtigungen an, die für die Kernfunktion zwingend notwendig sind.
+      Berechtigungen für Standort, Kamera, Kontakte oder Mikrofon werden
+      <strong>nicht verwendet</strong>, sofern du sie nicht für optionale Funktionen
+      ausdrücklich freigibst.
+    </p>
+  </div>
+
+  <p class="section-label">Deine Rechte</p>
+
+  <!-- Card 6: Löschung -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🗑️</div>
+      <h2>Datenlöschung</h2>
+    </div>
+    <p>
+      Da alle Daten lokal auf deinem Gerät liegen, hast du die vollständige Kontrolle.
+      Durch <strong>Deinstallation der App</strong> oder über die App-internen Einstellungen
+      kannst du sämtliche Daten jederzeit vollständig löschen – ohne Anfrage an uns.
+    </p>
+  </div>
+
+  <!-- Card 7: Kinder -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">👶</div>
+      <h2>Schutz von Kindern</h2>
+    </div>
+    <p>
+      Kiddoo richtet sich an Eltern und Erziehungsberechtigte als Hilfsmittel zur
+      Babypflege-Dokumentation. Die App erfasst <strong>keine Daten von Kindern</strong>.
+      Minderjährige sollten die App nur unter Aufsicht Erziehungsberechtigter verwenden.
+    </p>
+  </div>
+
+  <!-- Card 8: Änderungen & Kontakt -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✉️</div>
+      <h2>Kontakt &amp; Änderungen</h2>
+    </div>
+    <p>
+      Diese Datenschutzerklärung kann bei wesentlichen Änderungen der App aktualisiert werden.
+      Die aktuelle Version ist stets unter dieser URL abrufbar.
+    </p>
+    <p>Bei Fragen erreichst du uns unter:</p>
+    <div class="contact-table">
+      <span class="key">E-Mail</span> <span class="val"><a href="mailto:privacy@kiddoo-app.de">privacy@kiddoo-app.de</a></span>
+    </div>
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-app">Kiddoo 🍼</div>
+  <p>Letzte Aktualisierung: 31. Mai 2026</p>
+  <p style="margin-top:.3rem;">Sören Jacobsen &nbsp;·&nbsp; Alle Rechte vorbehalten</p>
+</footer>
+
+<script>
+  // Intersection Observer – cards fade in on scroll
+  const cards = document.querySelectorAll('.card');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  cards.forEach(c => io.observe(c));
+</script>
+
+</body>
+</html>
